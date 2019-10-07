@@ -22,5 +22,8 @@ node {
 
     stage "Deploy"
         
-        sh "sed 's#__IMAGE__#'$BUILDIMG'#' applications/hello-kenzan/k8s/deployment.yaml | kubectl apply -f -"
+        sh "sed 's#__IMAGE__#'$BUILDIMG'#' applications/hello-kenzan/k8s/deployment.yaml > applications/hello-kenzan/k8s/deployment_temp.yaml"
+        sh "ls -alh applications/hello-kenzan/k8s/deployment_temp.yaml"
+        sh "cat applications/hello-kenzan/k8s/deployment_temp.yaml"
+        sh "kubectl apply -f applications/hello-kenzan/k8s/deployment_temp.yaml"
 }
